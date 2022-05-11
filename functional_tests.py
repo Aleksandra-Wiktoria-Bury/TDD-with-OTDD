@@ -12,19 +12,19 @@ class NewVisitorTest (unittest.TestCase):
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
-        # user checks teh homepage
+        # user checks the homepage
         self.browser.get('http://localhost:8000')
         
         #? an assertion is a predicate connected to a point in the program, that always should evaluate to true at that point in code execution
         # user checks for the page title & header - 'To-Do' 
         self.assertIn('To-Do', self.browser.title)
-        self.fail('Ginish the test!')
+        self.fail('Finish the test!')
         # user can enter a to-do item straight away
         # # user types the task
 
         # after submitting with 'enter' a new task is displayed
 
-        # input form for adding a new task i still present, user enters another task
+        # input form for adding a new task is still present, user enters another task
 
         # upon page update, 2 tasks are displayed
 
