@@ -4,3 +4,5 @@ geckodriver.log
 
 __pycache__
 *.pyc
+
+main_test.py
