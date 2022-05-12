@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
 #! standard library with common tests - class unittest.TestCase:
 import unittest
@@ -15,14 +17,31 @@ class NewVisitorTest (unittest.TestCase):
         # user checks the homepage
         self.browser.get('http://localhost:8000')
         
-        #? an assertion is a predicate connected to a point in the program, that always should evaluate to true at that point in code execution
         # user checks for the page title & header - 'To-Do' 
         self.assertIn('To-Do', self.browser.title)
-        self.fail('Finish the test!')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('To-Do', header_text)
+        
         # user can enter a to-do item straight away
-        # # user types the task
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Enter a to-do item'
+        )
+        
+        # user types the task: "Buy new carpet"
+        inputbox.send_keys('Buy new carpet')
 
         # after submitting with 'enter' a new task is displayed
+        inputbox.send_keys(Keys.ENTER)
+        #! explicit wait:
+        time.sleep(1)
+
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertTrue(
+            any(row.text == '1. Buy new carpet' for row in rows)
+        )
 
         # input form for adding a new task is still present, user enters another task
 
@@ -31,7 +50,7 @@ class NewVisitorTest (unittest.TestCase):
         # will the results be stored? There should be a custom generated URL
 
         # user visits that URL - her to-do list is still there.
-
+        self.fail('Finish the test!')
         # all achieved!
 if __name__ == '__main__':  
     unittest.main()
