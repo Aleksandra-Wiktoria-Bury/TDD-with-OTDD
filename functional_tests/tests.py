@@ -1,11 +1,12 @@
-from django.test import LiveServerTestCase
+# from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from selenium.common.exceptions import WebDriverException
 
 MAX_WAIT = 10
-class NewVisitorTest (LiveServerTestCase):
+class NewVisitorTest (StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -52,8 +53,6 @@ class NewVisitorTest (LiveServerTestCase):
 
         # input form for adding a new task is still present, user enters another task
         inputbox = self.browser.find_element_by_id('id_new_item')
-         # input box is centered
-        self.assertAlmostEqual(inputbox.location['x'] + inputbox.size['width']/2, 512, delta = 10)
         inputbox.send_keys('Mount the lamp')
         inputbox.send_keys(Keys.ENTER)
 
@@ -112,7 +111,7 @@ class NewVisitorTest (LiveServerTestCase):
 
         # input box is centered
         inputbox = self.browser.find_element_by_id('id_new_item')
-        self.assertAlmostEqual(inputbox.location['x'] + inputbox.size['width']/2, 512, delta = 10)
+        self.assertAlmostEqual(inputbox.location['x'] + inputbox.size['width']/2, 512, delta = 5)
 
 #if __name__ == '__main__':  
 #    unittest.main()

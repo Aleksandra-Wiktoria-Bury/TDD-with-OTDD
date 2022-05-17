@@ -1,0 +1,33 @@
+:root {
+    --primary-col: rgb(42, 129, 186);
+    --secondary-col: rgba(252, 166, 120, 0.927);
+    --bg-light: rgb(255, 255, 255);
+  }
+  
+
+.header{
+    font-family: 'Lato', sans-serif;
+    color: var(--primary-col);
+}
+
+.dotted {
+    background-image: 
+    radial-gradient(var(--secondary-col) 10%, transparent 10%);
+  background-position: 8px 8px;
+  background-size: 12px 12px;
+  background-color: var(--bg-light);
+  height: 100vh;
+}
+
+.input {
+    border: 1px solid var(--secondary-col);
+    height: 60px;
+    text-align: center;
+}
+
+.tasks {
+    background-color: var(--bg-light);
+    padding: 10px;
+    border-radius: 15px;
+    color: var(--primary-col);
+}
