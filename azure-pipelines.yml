@@ -51,5 +51,5 @@ stages:
         testRunTitle: 'Python $(PYTHON_VERSION)'
       condition: succeededOrFailed()
 
-- stage: Deploy
+
 
