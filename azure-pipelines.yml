@@ -50,6 +50,22 @@ stages:
         testResultsFiles: "**/TEST-*.xml"
         testRunTitle: 'Python $(PYTHON_VERSION)'
       condition: succeededOrFailed()
+    
+- stage: Deploy
+  jobs:  
+  - deployment: VMDeploy
+    displayName: web
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment:
+      name: ola-ottg-vm
+      resourceType: VirtualMachine
+      tags: lists-app
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo deployment test
 
 
 
