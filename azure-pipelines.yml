@@ -50,18 +50,11 @@ stages:
         testResultsFiles: "**/TEST-*.xml"
         testRunTitle: 'Python $(PYTHON_VERSION)'
       condition: succeededOrFailed()
-    - task: CopyFiles@2
-      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    - task: PublishPipelineArtifact@1
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)'
-        Contents: |
-          **/*
-          !.git/**/*
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: $(Build.ArtifactStagingDirectory)
-        artifactName: superlists
+          targetPath: '$(Pipeline.Workspace)'
+          artifact: 'superlists'
+          publishLocation: 'pipeline'
     
 - stage: Deploy
   jobs:  
